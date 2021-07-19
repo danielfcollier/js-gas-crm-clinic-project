@@ -1,0 +1,14 @@
+{
+  "timeZone": "America/Sao_Paulo",
+  "dependencies": {
+    "libraries": [
+      {
+        "userSymbol": "QUnitGS2",
+        "version": "23",
+        "libraryId": "1tXPhZmIyYiA_EMpTRJw0QpVGT5Pdb02PpOHCi9A9FFidblOc9CY_VLgG"
+      }
+    ]
+  },
+  "exceptionLogging": "STACKDRIVER",
+  "runtimeVersion": "V8"
+}
