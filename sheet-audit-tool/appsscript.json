@@ -1,0 +1,13 @@
+{
+  "timeZone": "America/Sao_Paulo",
+  "dependencies": {
+  },
+  "exceptionLogging": "STACKDRIVER",
+  "runtimeVersion": "V8",
+  "sheets": {
+    "macros": [{
+      "menuName": "Macro sem título",
+      "functionName": "myFunction1"
+    }]
+  }
+}
