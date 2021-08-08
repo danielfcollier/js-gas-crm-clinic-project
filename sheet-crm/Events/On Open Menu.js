@@ -13,6 +13,8 @@ function createMenu() {
     .addSeparator()
     .addItem('CONFIRMAÇÃO OBRIGATÓRIA', 'booking_process')
     .addSeparator()
+    .addItem('CRIAR PRONTUÁRIO', 'createMedicalRecord')
+    .addSeparator()
     .addItem("Alterações > Mudar Data da Consulta", 'booking_changeConsultationDate')
     .addItem("Alterações > Corrigir Valor de CPF/Telefone/CEP", 'corrections_numbertoString')
     .addSeparator()
