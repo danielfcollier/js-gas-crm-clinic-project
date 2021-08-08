@@ -22,8 +22,8 @@ const DUE_DATE_TIGHT_RULE = true;
 const DUE_DATE_DAYS_TIGHT = 10;    // Payment 10 days before Consultation Date for In Person Consultations
 //const DUE_DATE_DAYS_TIGHT = 1;   // (Rule change to the above) Payment 1 day after Booking Date for In Person Consultations
 
-const conventionalPayments = ["", "Boleto", "Cartão de Crédito", "Cartão de Débito"];
-const noPaymentHere = ["PIX", "Transferência", "Dinheiro", "Cheque"];
+const conventionalPayments = ["", "Boleto", "Cartão de Crédito", "Cartão de Débito", "PIX"];
+const noPaymentHere = ["Transferência", "Dinheiro", "Cheque"];
 
 const MAX_INSTALLMENT_COUNT = 10;
 
@@ -33,11 +33,11 @@ const consultationInfos = {
   "OnlineEmergência": 180,
   "OnlineBeija-flor": 240,
   "OnlineGirassol": 480,
-  "PresencialArtemísia": 160,
-  "PresencialEmergência": 160,
+  "PresencialArtemísia": 240,
+  "PresencialEmergência": 240,
   "PresencialBeija-flor": 360,
   "PresencialGirassol": 720,
-  "DIU": 810
+  "DIU": 900
 };
 
 var consultationDescription;
