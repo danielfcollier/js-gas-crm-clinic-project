@@ -27,8 +27,8 @@ Lead.SheetName = "Lead";
 Lead.MaxRange = "I";
 
 crm.SheetName = "Agendamentos";
-crm.MaxRange = "AE";
-CRM.MaxRange = "AE";
+crm.MaxRange = "AD";
+CRM.MaxRange = "AD";
 
 // *****************************************************************************************
 Client.Status = 1;
@@ -95,8 +95,7 @@ crm.PaymentWatch = 26;
 crm.PaymentDate = 27;
 crm.OpexPayment = 28;
 crm.OpexTaxes = 29;
-crm.DeleteFlag = 30;
-crm.FlowControl = 31;
+crm.FlowControl = 30;
 
 // *****************************************************************************************
 // >>> CRM ACCESS CONFIGURATION

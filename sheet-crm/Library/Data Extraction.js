@@ -2,7 +2,7 @@
 function dataExtraction_extratDatafromCrmSheet(option = 10) {
   // Initialization
   let dataBulk, dataRow, dataRowLocation;
-  let crmSheet =  SpreadsheetApp.openById(SheetIdCRM).getSheetByName(crm.SheetName);
+  let crmSheet = SpreadsheetApp.getActive().getSheetByName(crm.SheetName);
   let currentSheet = SpreadsheetApp.getActive().getActiveSheet();
 
   // Options
@@ -11,35 +11,6 @@ function dataExtraction_extratDatafromCrmSheet(option = 10) {
       let currentRowLocation = currentSheet.getActiveCell().getRow()
       dataRowLocation = dataExtraction_findDataRowLocationAtCrmSheet(currentSheet, currentRowLocation)
       dataRow = dataExtraction_getDataRow("crm", "row", dataRowLocation);
-      dataBulk = [dataRow];
-      break;
-    case 2: // Bulk Action
-      let lastRow = dataExtraction_getLastRow(crmSheet, "B1:E");
-      dataBulk = crmSheet.getRange("A2" + ":" + crm.MaxRange + lastRow).getValues();
-      break;
-    default: // For Unit Testing
-      dataRow = [new Date(2021, (2 - 1), 23), 'CRM-72865759-dfb8-74a5-1603-4d6b4cc367bc', 'Florianópolis',
-        '1ª Consulta', 'Daniel Collier', new Date(1989, (9 - 1), 12), '00321278127', '6210487',
-        'danielfcollier@gmail.com', '88060402', '+5648992858928', new Date(2021, (6 - 1), 1), '',
-        'Online', 'Beija-flor', 'Autorizada', 600, 3, '', '', '', 'https://wa.me/5648992858928',
-        '', '', ''];
-      dataBulk = [dataRow];
-  }
-  return dataBulk;
-}
-// *****************************************************************************************
-function dataExtraction_extratDatafromCRMSheet(option = 10) {
-  // Initialization
-  let dataBulk, dataRow, dataRowLocation;
-  let crmSheet = SpreadsheetApp.getActive().getSheetByName(CRM.SheetName);
-  let currentSheet = SpreadsheetApp.getActive().getActiveSheet();
-
-  // Options
-  switch (option) {
-    case 1: // User Selection
-      let currentRowLocation = currentSheet.getActiveCell().getRow()
-      dataRowLocation = dataExtraction_findDataRowLocationAtCrmSheet(currentSheet, currentRowLocation);
-      dataRow = dataExtraction_getDataRow("CRM", "row", dataRowLocation);
       dataBulk = [dataRow];
       break;
     case 2: // Bulk Action
@@ -91,9 +62,13 @@ function dataExtraction_searchDataRowInSheetColumnByTerm(sheet, searchColumn, te
     let searchVectorTransposed = transpose2(searchVector);
     searchVector = searchVectorTransposed[0];
 
-    let searchRow = searchVector.findIndex(i => i === term) + 2;
+    let searchRow = searchVector.findIndex(i => i === term);
 
-    let dataRow = sheet.getRange(searchRow, 1, 1, sheet.getMaxColumns()).getValues();
+    if (searchRow === -1) {
+      return "not found";
+    }
+
+    let dataRow = sheet.getRange(searchRow + SHEET_OFFSET, 1, 1, sheet.getMaxColumns()).getValues();
 
     return dataRow[0];
   }
@@ -106,18 +81,25 @@ function dataExtraction_searchDataRowInSheetColumnByTerm(sheet, searchColumn, te
 // >>> Get the Client Data from Client Sheet by Full Name search.
 // *****************************************************************************************
 function dataExtraction_getClientDataFromClientSheetByFullNameSearch(clientDataFieldColumn, fullName) {
+
+  // Initialization
+  let clientSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(Client.SheetName);
+
+  // Action
   try {
-    let ss = SpreadsheetApp.getActiveSpreadsheet();
-    let sheet = ss.getSheetByName(Client.SheetName);
+    let dataRow = dataExtraction_searchDataRowInSheetColumnByTerm(clientSheet, Client.FullName, fullName);
 
-    let dataRow = dataExtraction_searchDataRowInSheetColumnByTerm(sheet, Client.FullName, fullName)
+    let isDataRowNotFound = (dataRow === "error") || (dataRow === "not found");
+    if (isDataRowNotFound) {
+      return "";
+    }
+
     let requestedClientData = dataRow[clientDataFieldColumn - 1];
-
     return requestedClientData;
   }
   catch (err) {
     sendEmailToOwner_errorNotification("[CRM] Library > dataExtraction_getClientDataFromClientSheetByFullNameSearch()");
-    return false;
+    return "error";
   }
 }
 // *****************************************************************************************

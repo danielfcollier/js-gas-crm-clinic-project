@@ -31,7 +31,7 @@ const consultationInfos = {
   "OnlineFloral": 180,
   "OnlineArtemísia": 180,
   "OnlineEmergência": 180,
-  "OnlineBeija-flor": 240,
+  "OnlineBeija-flor": 280,
   "OnlineGirassol": 480,
   "PresencialArtemísia": 240,
   "PresencialEmergência": 240,

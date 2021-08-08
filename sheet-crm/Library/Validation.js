@@ -14,7 +14,7 @@ function validation_isSheetLocationWrong(sheet, option = 3) {
       isSheetLocationNotValid = !(sheetName === "Semana");
       break;
     default:
-      isSheetLocationNotValid = !(sheetName === crm.SheetName || sheetName === "Semana");
+      isSheetLocationNotValid = !(sheetName === crm.SheetName || sheetName === CRM.SheetName || sheetName === "Semana");
   }
 
   return isSheetLocationNotValid ? true : false;

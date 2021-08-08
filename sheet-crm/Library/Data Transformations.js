@@ -107,19 +107,6 @@ function isValidPhone(phone) {
   return (localPattern.test(phone) || internationalPattern.test(phone));
 }
 // *****************************************************************************************
-function showPhone(phone) {
-  phone = phone.toString();
-
-  if (phone.length===11) {
-    phone = phone.replace(/(\d{2})(\d{5})(\d{3})/, "($1) $2-$3");
-  }
-  else {
-    phone = `+${phone}`;
-  }
-
-  return phone;
-}
-// *****************************************************************************************
 // >>> ZipCode
 // *****************************************************************************************
 function isValidZipCode(zipcode) {
@@ -135,11 +122,6 @@ function isValidZipCode(zipcode) {
 // *****************************************************************************************
 function formatZipCode(zipcode) {
   return zipcode.toString().replace(/[\s.-]*/igm, '')
-}
-// *****************************************************************************************
-function showZipCode(zipcode) {
-  zipcode = zipcode.toString().replace(/(\d{2})(\d{3})(\d{3})/, "$1.$2-$3");
-  return zipcode;
 }
 // *****************************************************************************************
 // >>> Price
